@@ -1,0 +1,48 @@
+/* src/styles/Alerta.css */
+
+.alerta {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 30px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Estilo para una alerta de éxito (verde) */
+.alerta.exito {
+  background-color: #28a745;
+}
+
+/* Estilo para una alerta de error (rojo) */
+.alerta.error {
+  background-color: #dc3545;
+}
+
+/* Animación para que la alerta aparezca y desaparezca suavemente */
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: 20px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,115 @@
+/* src/styles/Registro.css */
+
+/* Contenedor principal para centrar el formulario */
+.registro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ocupa al menos el alto completo de la ventana */
+  background: linear-gradient(135deg, #71b7e6, #9b59b6); /* Fondo degradado */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Estilos para el formulario */
+.registro-form {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  width: 100%;
+  max-width: 450px; /* Ancho máximo para el formulario */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Título del formulario */
+.registro-title {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Grupos de formulario (label + input) */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left; /* Alinea los labels a la izquierda */
+}
+
+.form-group label {
+  display: block; /* Cada label en su propia línea */
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+/* Inputs de texto y contraseña */
+.form-input {
+  width: calc(100% - 20px); /* Ocupa todo el ancho menos el padding */
+  padding: 12px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #71b7e6; /* Borde azul al enfocar */
+  box-shadow: 0 0 8px rgba(113, 183, 230, 0.4);
+  outline: none; /* Eliminar el contorno predeterminado del navegador */
+}
+
+/* Botón de envío */
+.submit-button {
+  background-color: #007bff; /* Azul vibrante */
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+  transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+
+/* Estilo para el enlace de login */
+.login-link {
+  margin-top: 25px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design para pantallas pequeñas */
+@media (max-width: 600px) {
+  .registro-form {
+    padding: 25px;
+    margin: 0 15px; /* Margen a los lados en móviles */
+  }
+  .registro-title {
+    font-size: 1.8em;
+  }
+  .submit-button {
+    padding: 12px 20px;
+  }
+}

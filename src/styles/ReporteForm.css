@@ -1,0 +1,224 @@
+.reporte-form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+.reporte-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.reporte-form-title {
+  color: #2c3e50;
+  font-size: 2.5em;
+  font-weight: bold;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.perfil-button,
+.logout-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.perfil-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.reporte-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+.textA{
+  height: 250px;
+}
+.reporte-form input[type="text"],
+.reporte-form textarea,
+.reporte-form input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-size: 1em;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reporte-form input[type="text"]:focus,
+.reporte-form textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.ubicacion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ubicacion-button {
+  background-color: #2ecc71;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ubicacion-button:hover {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+}
+
+.ubicacion-info {
+  font-size: 0.9em;
+  color: #555;
+  margin: 0;
+}
+
+.submit-button {
+  background-color: #3498db;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.plagas-fieldset {
+    /* Contenedor principal con un borde ligero */
+    border: 1px solid #e0e0e0; 
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.plagas-fieldset legend {
+    /* Estilo del título del grupo */
+    font-size: 1.05em;
+    font-weight: 600;
+    color: #34495e;
+    padding: 0 8px;
+}
+
+.plagas-checkbox-group {
+    /* Asegura que los checkboxes se muestren en fila y se ajusten */
+    display: flex;
+    flex-wrap: wrap; /* Permite que las etiquetas salten de línea en móviles */
+    gap: 10px; /* Espacio entre las etiquetas */
+    padding-top: 10px;
+}
+
+/* ================================================= */
+/* ESTILOS DE CADA ETIQUETA (LA PÍLDORA) */
+/* ================================================= */
+
+.plaga-label {
+    /* Convierte toda la etiqueta en el área de clic (la "píldora") */
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px; 
+    cursor: pointer;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #333;
+    position: relative; /* Necesario si usáramos pseudo-elementos */
+}
+
+/* Ocultar el input checkbox nativo para poder estilizar el label */
+.plaga-label input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+/* ------------------------------------------- */
+/* ESTADOS INTERACTIVOS */
+/* ------------------------------------------- */
+
+/* Estilo de Hover (al pasar el ratón) */
+.plaga-label:hover {
+    border-color: #3498db; 
+    background-color: #ecf0f1;
+}
+
+/* Estilo cuando la plaga está MARCADA (Checked) */
+/* El selector :has() aplica estilos al padre (label) si contiene al hijo (input:checked) */
+.plaga-label:has(input[type="checkbox"]:checked) {
+    background-color: #3498db; /* Tu color primario */
+    color: white; /* Texto blanco para contraste */
+    border-color: #3498db;
+    /* Sombra para darle profundidad y destacar que está seleccionado */
+    box-shadow: 0 3px 6px rgba(52, 152, 219, 0.4); 
+    font-weight: 600;
+}

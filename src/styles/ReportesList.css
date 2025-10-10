@@ -1,0 +1,295 @@
+.reportes-page-container {
+    /* ESTILOS DE CAJA ELIMINADOS PARA EVITAR CONFLICTOS CON EL CONTENEDOR PADRE */
+    max-width: 100%; /* Ya no forzamos 1400px, usamos todo el ancho del padre */
+    margin: 0; /* CRUCIAL: Asegura que no haya margen superior ni inferior extra */
+    padding: 0; /* Eliminamos el padding de este contenedor, si es necesario, lo añadimos al contenido interior */
+    background-color: transparent; /* Usa el color de fondo del padre (.admin-dashboard) */
+    border-radius: 0; /* Usa el radio de borde del padre */
+    box-shadow: none; /* Usa la sombra del padre */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.reportes-content {
+    /* Usamos este div intermedio (si existe en ReportesList.js) para controlar el padding si es necesario */
+    padding: 20px; 
+}
+
+
+.reportes-title {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    font-weight: bold;
+    /* Aseguramos que el título del ReportesList no tenga margen superior */
+    margin-top: 0;
+}
+
+/* -------------------------------------- */
+/* Estilos del Filtro de Estado (NUEVO) */
+/* -------------------------------------- */
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    justify-content: flex-start; /* Alineación a la izquierda */
+}
+
+.filter-label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1em;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 0.95em;
+    cursor: pointer;
+    background-color: white;
+    transition: border-color 0.3s;
+}
+
+.filter-select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* -------------------------------------- */
+/* Estilos de la Cuadrícula y Tarjetas */
+/* -------------------------------------- */
+
+.reportes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    /* Quitamos el margin-top de aquí, ya que el padding del título ya da separación */
+    margin-top: 0; 
+}
+
+.reporte-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.reporte-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #34495e;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 0.95em;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Etiquetas de texto dentro de la tarjeta */
+.reporter-label, .status-label, .date-label, .desc-label {
+    font-weight: 600; 
+    color: #34495e;
+    margin-right: 5px;
+}
+
+/* Información de quién está asignado */
+.asignado-info {
+    font-weight: bold;
+    color: #2980b9; 
+}
+
+/* Contenedor de las acciones de administración (Input, Botones, Select) */
+.admin-actions {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 8px; 
+    align-items: center;
+    margin-top: 15px; 
+}
+
+/* 🚨 Input para el nombre del personal asignado */
+.asignacion-input {
+    flex-grow: 1; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9em;
+    min-width: 150px; 
+}
+
+/* 🚨 Botón para Asignar Personal */
+.asignar-button {
+    background-color: #f39c12; 
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.asignar-button:hover:not(:disabled) {
+    background-color: #e67e22; 
+}
+
+.asignar-button:disabled {
+    background-color: #fbd07b;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Select de estado y botón Eliminar */
+.estado-select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.9em;
+    cursor: pointer;
+    background-color: #fff;
+    flex-grow: 1;
+    /* Ajuste para que se alinee con el botón de Eliminar */
+    flex-basis: 40%;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    flex-grow: 1; 
+    
+    /* 🚨 AJUSTE PARA CENTRADO Y COMPACIDAD */
+    text-align: center; /* Centra el texto horizontalmente dentro del botón */
+    white-space: nowrap; /* Mantiene el texto "Eliminar" en una sola línea */
+}
+.delete-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+}
+
+/* Botón para Ver Detalles (View Reporte Modal) */
+.view-button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.view-button:hover {
+    background-color: #2980b9;
+}
+
+/* -------------------------------------- */
+/* Estilo Específico del Botón Ver en Mapa (NUEVO) */
+/* -------------------------------------- */
+
+.map-pin-button {
+    background-color: #e67e22; /* Naranja para destacar */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.map-pin-button:hover {
+    background-color: #d35400;
+}
+
+
+/* ================================================= */
+/* ESTILOS DE ESTADO (Badges) */
+/* ================================================= */
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.85em;
+    text-transform: uppercase;
+}
+
+.status-pendiente {
+    background-color: #f2dede; 
+    color: #a94442; 
+    border: 1px solid #ebccd1;
+}
+
+/* 🚨 Estilo para el estado ASIGNADO */
+.status-asignado {
+    background-color: #fff3cd; 
+    color: #856404; 
+    border: 1px solid #ffeeba;
+}
+
+.status-en-proceso {
+    background-color: #d9edf7; 
+    color: #31708f; 
+    border: 1px solid #bce8f1;
+}
+
+.status-solucionado {
+    background-color: #dff0d8; 
+    color: #3c763d; 
+    border: 1px solid #d6e9c6;
+}
+
+/* Estilos de errores y mensajes */
+.loading-message, .error-message, .no-reportes-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* -------------------------------------- */
+/* Responsive adjustments for Filter (NUEVO) */
+/* -------------------------------------- */
+@media (max-width: 768px) {
+    .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

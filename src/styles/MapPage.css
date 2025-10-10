@@ -1,0 +1,158 @@
+/* Estilos principales para la página de mapa */
+.map-page-container {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.back-button {
+    padding: 10px 15px;
+    margin-bottom: 25px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+    background-color: blue;
+}
+
+.map-title {
+    font-size: 2.2em;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* --- Estilos de la Leyenda de Colores --- */
+.map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: #34495e;
+    font-weight: 600;
+}
+
+.legend-item span {
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #333; /* Contorno para visibilidad */
+}
+
+/* Clases específicas para los colores de la leyenda (usan la función getPinColorForLegend en JS) */
+.legend-item:nth-child(1) span { background-color: #E74C3C; } /* Pendiente - Rojo */
+.legend-item:nth-child(2) span { background-color: #F1C40F; } /* Asignado - Amarillo */
+.legend-item:nth-child(3) span { background-color: #3498DB; } /* En Proceso - Azul */
+.legend-item:nth-child(4) span { background-color: #2ECC71; } /* Solucionado - Verde */
+
+/* Mensaje de centrado */
+.center-info-message {
+    padding: 12px;
+    margin-bottom: 25px;
+    background-color: #d9edf7;
+    color: #31708f;
+    border: 1px solid #bce8f1;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Mensajes de estado (Loading, Error, No Reportes) */
+.loading-message, .error-message, .no-reportes-map {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-size: 1.1em;
+}
+
+.loading-message {
+    color: #3498db;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.no-reportes-map {
+    color: #7f8c8d;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos de la ventana emergente (Popup) */
+.map-popup h3 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+    font-size: 1.2em;
+}
+
+.map-popup p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.popup-status {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    display: inline-block;
+}
+
+/* Clases específicas para el estado dentro del popup */
+.status-pendiente {
+    background-color: #e74c3c;
+}
+
+.status-asignado {
+    background-color: #f39c12; /* Un naranja/amarillo que contrasta bien */
+}
+
+.status-en-proceso {
+    background-color: #3498db;
+}
+
+.status-solucionado {
+    background-color: #2ecc71;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .map-page-container {
+        padding: 15px;
+    }
+    .map-legend {
+        gap: 15px;
+        padding: 10px;
+    }
+    .legend-item {
+        font-size: 0.9em;
+    }
+}

@@ -1,0 +1,262 @@
+/* ================================================= */
+/* ESTILOS BASE Y PERFIL INFO */
+/* ================================================= */
+
+.perfil-container {
+    max-width: 800px; /* Ancho ajustado para una vista de lista enfocada */
+    margin: 40px auto; /* Centrado horizontal */
+    padding: 30px;
+    background-color: #f0f2f5;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+    font-family: 'Inter', sans-serif;
+}
+
+.perfil-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px; 
+    border-bottom: 2px solid #e0e0e0;
+    flex-wrap: wrap;
+}
+
+.perfil-title {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.go-to-report-button,
+.logout-button {
+    padding: 10px 18px; 
+    border: none;
+    border-radius: 6px; 
+    font-size: 1em;
+    font-weight: bold; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+    /* Ajuste para móviles */
+    margin-top: 10px; 
+}
+
+.go-to-report-button {
+    background-color: #3498db;
+    color: white;
+}
+
+.go-to-report-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.logout-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.logout-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+.perfil-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    border: 1px solid #ddd; 
+}
+
+.perfil-info-item {
+    margin: 10px 0;
+    font-size: 1.2em; /* Letra un poco más grande */
+    color: #555;
+}
+
+.perfil-info-item strong {
+    color: #34495e;
+}
+
+.reportes-title {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    padding-top: 10px;
+}
+
+/* ================================================= */
+/* ESTILOS DE REPORTES (VISTA DE LISTA) */
+/* ================================================= */
+
+.reportes-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto 0 auto; /* Centrado */
+}
+
+/* Nota: Los reportes en PerfilUsuario.jsx usan la clase reporte-card-user */
+.reporte-card-user { 
+    background-color: #fff;
+    padding: 25px; /* Más espacio interno */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px; /* Separación vertical entre reportes */
+    border-left: 6px solid #3498db; 
+    transition: box-shadow 0.3s ease;
+}
+
+.reporte-card-user:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.reporte-card-title {
+    font-size: 1.6em; /* Letra más grande para el título */
+    color: #34495e;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: 700;
+}
+
+.reporte-data-group {
+    margin-bottom: 10px;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dotted #f5f5f5;
+}
+
+.data-row:last-of-type {
+    border-bottom: none;
+}
+
+.reporte-label {
+    font-weight: 600;
+    color: #555;
+    font-size: 1.1em; /* Letra más grande */
+}
+
+.reporte-value {
+    color: #34495e;
+    font-weight: 500;
+    font-size: 1.1em; /* Letra más grande */
+}
+
+/* --- ESTILOS ESPECÍFICOS DE SEGUIMIENTO (ASIGNACIÓN) --- */
+
+.asignado-label-user {
+    color: #27ae60; 
+}
+
+.asignado-value-user {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+/* Descripción */
+.reporte-descripcion-user {
+    font-style: normal;
+    color: #7f8c8d;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 1em;
+}
+
+.desc-title {
+    font-weight: bold;
+    color: #555;
+    margin-right: 5px;
+}
+
+/* Imagen - AJUSTES PARA SINCRONIZAR CON JSX Y EVITAR DESBORDE */
+.reporte-image-container-user { /* Clase usada en PerfilUsuario.jsx */
+    margin-top: 20px;
+    width: 100%; 
+    max-height: 200px; 
+    overflow: hidden !important; 
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; 
+}
+
+/* Aplica una regla general fuerte a CUALQUIER imagen dentro de un reporte-card-user */
+.reporte-card-user img { 
+    /* Esta regla DEBE anular cualquier estilo en línea de baja especificidad */
+    width: 100% !important; 
+    max-width: 100% !important; 
+    height: auto !important; 
+    max-height: 200px !important;
+    display: block;
+    object-fit: contain !important; /* Asegura que la imagen completa se vea */
+}
+
+.reporte-image-user { /* Clase usada en PerfilUsuario.jsx */
+    width: 100%; 
+    max-width: 100%; 
+    height: auto; 
+    max-height: 200px;
+    display: block;
+    object-fit: contain;
+}
+
+.no-reportes-message {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+
+/* ================================================= */
+/* ESTILOS DE ESTADO (Badges) */
+/* ================================================= */
+
+.status-badge-user {
+    padding: 6px 12px; 
+    border-radius: 50px; 
+    font-weight: 700;
+    font-size: 0.9em; 
+    text-transform: uppercase;
+    display: inline-block;
+    min-width: 90px; 
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.status-pendiente {
+    background-color: #fcebeb; 
+    color: #c0392b;
+    border: 1px solid #e74c3c;
+}
+
+.status-asignado {
+    background-color: #fff3e6; 
+    color: #e67e22;
+    border: 1px solid #f39c12;
+}
+
+.status-en-proceso {
+    background-color: #ebf5ff; 
+    color: #2980b9;
+    border: 1px solid #3498db;
+}
+
+.status-solucionado {
+    background-color: #e6f7eb; 
+    color: #2ecc71;
+    border: 1px solid #27ae60;
+}

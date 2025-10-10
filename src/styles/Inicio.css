@@ -1,0 +1,76 @@
+/* src/styles/Inicio.css */
+
+/* Contenedor principal de la página de inicio */
+.inicio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6); /* El mismo degradado que en Registro.css */
+  color: white; /* Texto blanco para contraste */
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Contenido central de la página */
+.inicio-content {
+  background-color: rgba(255, 255, 255, 0.15); /* Fondo semitransparente */
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra para un efecto de profundidad */
+  max-width: 600px;
+  width: 100%;
+  backdrop-filter: blur(10px); /* Efecto de desenfoque detrás del contenido */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilidad con navegadores */
+}
+
+/* Título y subtítulo */
+.inicio-title {
+  font-size: 3em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para el texto */
+}
+
+.inicio-subtitle {
+  font-size: 1.2em;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+/* Contenedor de los botones */
+.inicio-buttons {
+  display: flex;
+  gap: 20px; /* Espacio entre los botones */
+  justify-content: center;
+  flex-wrap: wrap; /* Permite que los botones se envuelvan en pantallas pequeñas */
+}
+
+/* Estilos para los botones (comunes) */
+.inicio-button, .inicio-button-secondary {
+  text-decoration: none; /* Quitamos el subrayado del enlace */
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 180px;
+}
+
+.inicio-button:hover, .inicio-button-secondary:hover {
+  transform: translateY(-5px); /* Efecto de levitación */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos específicos para el botón principal (Iniciar Sesión) */
+.inicio-button {
+  background-color: #ffffff; /* Fondo blanco */
+  color: #9b59b6; /* Color del texto a juego con el degradado */
+  border: 2px solid #ffffff;
+}
+
+/* Estilos específicos para el botón secundario (Registrarse) */
+.inicio-button-secondary {
+  background-color: transparent; /* Fondo transparente */
+  color: #ffffff; /* Texto blanco */
+  border: 2px solid #ffffff; /* Borde blanco */
+}
