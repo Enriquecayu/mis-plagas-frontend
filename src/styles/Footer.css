@@ -1,0 +1,23 @@
+/* src/styles/Footer.css */
+
+.app-footer {
+    /* Estética */
+    background-color: #343a40; /* Fondo gris oscuro */
+    color: #f8f9fa; /* Letras blancas */
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    width: 100%;
+    
+    /* Separación del Contenido (Asegúrate de que haya espacio) */
+    margin-top: 50px;
+}
+
+.app-footer p {
+    margin: 5px 0;
+}
+
+.app-footer p:last-child {
+    font-weight: 500;
+    color: #adb5bd; /* Gris sutil para el creador */
+}

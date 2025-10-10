@@ -1,0 +1,85 @@
+/* src/styles/InformacionPlagas.css */
+
+.info-plagas-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f4f7f6;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-plagas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 15px;
+}
+
+.info-plagas-header h1 {
+    font-size: 1.8em;
+    color: #0056b3;
+}
+
+.back-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.plagas-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.plaga-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #007bff;
+}
+
+.plaga-card h2 {
+    color: #dc3545; /* Rojo para destacar el nombre de la plaga */
+    margin-top: 0;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.detalle-seccion {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px dashed #eee;
+}
+
+.detalle-seccion h3 {
+    color: #28a745; /* Verde para destacar secciones */
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+.plaga-card ul {
+    padding-left: 20px;
+}
+
+.info-plagas-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    color: #6c757d;
+}

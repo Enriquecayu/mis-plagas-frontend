@@ -9,7 +9,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 // Estilos locales (asegúrate de que exista este archivo)
 import "../styles/MapPage.css";
-
+import Footer from "../components/Footer";
 
 // ----------------------------------------------------
 // 1. UTILIDADES Y CONSTANTES DE LEAFLET
@@ -357,6 +357,7 @@ function MapPage() {
                     </MapContainer>
                 </div>
             )}
+            <Footer/>
         </div>
     );
 }

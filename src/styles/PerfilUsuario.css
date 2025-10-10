@@ -260,3 +260,27 @@
     color: #2ecc71;
     border: 1px solid #27ae60;
 }
+.info-button {
+    /* Fondo Azul Claro o un color que destaque */
+    background-color: #17a2b8; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-right: 10px; /* Espacio a la derecha para separarlo de otros botones */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-button:hover {
+    /* Oscurecer un poco al pasar el ratón */
+    background-color: #138496; 
+}
+
+.info-button:active {
+    /* Efecto de 'presión' al hacer clic */
+    transform: translateY(1px);
+}

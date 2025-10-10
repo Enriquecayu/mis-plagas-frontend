@@ -12,6 +12,7 @@ import ReporteForm from "./pages/ReporteForm";
 import DashboardAdmin from "./pages/DashboardAdmin";
 import MapPage from "./pages/MapPage";
 import PerfilUsuario from "./pages/PerfilUsuario";
+import InformacionPlagas from "./pages/InformacionPlagas";
 
 // Este es un componente auxiliar para proteger rutas
 const PrivateRoute = ({ children, allowedRoles }) => {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/mapa" element={<MapPage />} />
+        <Route path="/informacion-plagas" element={<InformacionPlagas />} />
 
         {/* Ruta principal, protegida para usuarios */}
         <Route

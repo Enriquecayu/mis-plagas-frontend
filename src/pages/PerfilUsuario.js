@@ -4,6 +4,8 @@ import axiosClient from '../config/axiosClient';
 import { useNavigate } from 'react-router-dom';
 import '../styles/PerfilUsuario.css';
 import Alerta from '../components/Alerta';
+import Footer from '../components/Footer';
+
 
 const PerfilUsuario = () => {
     const [perfil, setPerfil] = useState(null);
@@ -68,6 +70,9 @@ const PerfilUsuario = () => {
                 <button onClick={() => navigate('/reportar-plaga')} className="go-to-report-button">
                     Reportar Plaga
                 </button>
+                <button onClick={() => navigate("/mapa")} className="perfil-button">
+                        Mapa
+                </button>
                 <button onClick={handleLogout} className="logout-button">
                     Cerrar sesión
                 </button>
@@ -127,6 +132,7 @@ const PerfilUsuario = () => {
             ) : (
                 <div className="no-reportes-message">Aún no has enviado ningún reporte.</div>
             )}
+            <Footer/>
         </div>
     );
 };

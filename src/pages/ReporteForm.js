@@ -4,13 +4,14 @@ import axiosClient from "../config/axiosClient";
 import { useNavigate } from "react-router-dom";
 import "../styles/ReporteForm.css";
 import Alerta from "../components/Alerta";
+import Footer from "../components/Footer";
 
 // Las 4 plagas fijas para los checkboxes. 
 const PLAGAS_FIJAS = [
-    { id: 1, nombre: "Cucarachas" },
-    { id: 2, nombre: "Ratones" },
-    { id: 3, nombre: "Mosquitos" },
-    { id: 4, nombre: "Termitas" },
+    { id: 1, nombre: "Dengue" },
+    { id: 2, nombre: "Zica" },
+    { id: 3, nombre: "Leishmaniasis" },
+    { id: 4, nombre: "Chikungunya" },
 ];
 
 // ELIMINADO: Ya no necesitamos definir la URL base aquí
@@ -169,6 +170,9 @@ const ReporteForm = () => {
             <div className="reporte-form-header">
                 <h1 className="reporte-form-title">Reporte de Plaga</h1>
                 <div className="button-container">
+                    <button onClick={() => navigate("/informacion-plagas")} className="info-button">
+                        Informarme
+                    </button>
                     <button onClick={() => navigate("/mapa")} className="perfil-button">
                         Mapa
                     </button>
@@ -230,6 +234,7 @@ const ReporteForm = () => {
                     {loading ? "Enviando..." : "Enviar Reporte"}
                 </button>
             </form>
+            <Footer/>
         </div>
     );
 };
