@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import "../styles/ReporteForm.css";
 import Alerta from "../components/Alerta";
 import Footer from "../components/Footer";
+import SeleccionarUbicacionMapa from "../components/SeleccionarUbicacionMapa"; // <-- IMPORTADO
 import Swal from "sweetalert2";
-// Las 4 plagas fijas para los checkboxes. 
 
-//cambio aqui
+// Las 4 plagas fijas para los checkboxes. 
 const PLAGAS_FIJAS = [
     { id: 1, nombre: "Micorbasurales" },
     { id: 2, nombre: "Terreno Baldios" },
@@ -23,6 +23,9 @@ const ReporteForm = () => {
     const [descripcion, setDescripcion] = useState("");
     const [foto, setFoto] = useState(null);
     const [ubicacion, setUbicacion] = useState({ latitud: null, longitud: null });
+    // --> NUEVO ESTADO para controlar el modal del mapa
+    const [isMapModalOpen, setIsMapModalOpen] = useState(false); 
+    
     const [loading, setLoading] = useState(false);
     const [alerta, setAlerta] = useState({ mensaje: "", tipo: "" });
     const [plagasSeleccionadas, setPlagasSeleccionadas] = useState([]);
@@ -93,22 +96,30 @@ const ReporteForm = () => {
     }
 };
 
-    const handleUbicacion = () => {
+    // ----------------------------------------------------------------------
+    // NUEVA FUNCIÓN UNIFICADA: Maneja la ubicación obtenida por GPS o Mapa
+    // ----------------------------------------------------------------------
+    const actualizarUbicacion = ({ latitud, longitud }) => {
+        setUbicacion({ latitud, longitud });
+        setAlerta({ mensaje: "Ubicación obtenida con éxito.", tipo: "exito" });
+    };
+
+    // ----------------------------------------------------------------------
+    // FUNCIÓN PARA OBTENER UBICACIÓN GPS
+    // ----------------------------------------------------------------------
+    const handleUbicacionGPS = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    setUbicacion({
+                    // Usa la función unificada para guardar la ubicación GPS
+                    actualizarUbicacion({
                         latitud: position.coords.latitude,
                         longitud: position.coords.longitude,
-                    });
-                    setAlerta({
-                        mensaje: "Ubicación obtenida con éxito.",
-                        tipo: "exito",
                     });
                 },
                 () => {
                     setAlerta({
-                        mensaje: "No se pudo obtener la ubicación.",
+                        mensaje: "No se pudo obtener la ubicación GPS. Intenta seleccionar en el mapa.",
                         tipo: "error",
                     });
                 }
@@ -131,8 +142,9 @@ const ReporteForm = () => {
             setAlerta({ mensaje: "Debes seleccionar al menos una plaga.", tipo: "error" });
             return;
         }
+        // --> VALIDACIÓN ACTUALIZADA: Verifica si se ha obtenido la ubicación (por GPS o Mapa)
         if (!ubicacion.latitud || !ubicacion.longitud) {
-            setAlerta({ mensaje: "Debes obtener tu ubicación antes de enviar.", tipo: "error" });
+            setAlerta({ mensaje: "Debes obtener tu ubicación o seleccionarla en el mapa.", tipo: "error" });
             return;
         }
 
@@ -152,13 +164,10 @@ const ReporteForm = () => {
                 formData.append("imagen", foto);
             }
 
+            // Datos de ubicación (ahora pueden venir del mapa)
             formData.append("latitud", ubicacion.latitud);
             formData.append("longitud", ubicacion.longitud);
 
-            // CAMBIO 3: Usamos axiosClient con ruta relativa. 
-            // *Nota importante: `Content-Type: multipart/form-data` se maneja 
-            // automáticamente por el navegador cuando se envía `FormData`.
-            // El token es inyectado por el Interceptor.
             await axiosClient.post('/reportes', formData);
 
             setAlerta({ mensaje: "Reporte enviado con éxito. Redirigiendo...", tipo: "exito" });
@@ -212,7 +221,19 @@ const ReporteForm = () => {
                     </button>
                 </div>
             </div>
+            
+            {/* --> LÓGICA DEL MODAL DE MAPA */}
+            {isMapModalOpen && (
+                <SeleccionarUbicacionMapa 
+                    onClose={() => setIsMapModalOpen(false)} // Cierra el modal
+                    onSelectLocation={actualizarUbicacion}  // Función que guarda las coordenadas seleccionadas
+                    ubicacionInicial={ubicacion}             // Pasa la ubicación actual (si existe)
+                />
+            )}
+            {/* ----------------------------- */}
+
             <Alerta mensaje={alerta.mensaje} tipo={alerta.tipo} />
+            
             <form className="reporte-form" onSubmit={handleSubmit}>
 
                 {/* ---------- BLOQUE DE CHECKBOXES FIJOS ---------- */}
@@ -242,22 +263,36 @@ const ReporteForm = () => {
                     onChange={(e) => setDescripcion(e.target.value)}
                     required
                 ></textarea>
+                
                 <input type="file" onChange={(e) => setFoto(e.target.files[0])} />
+                
                 <div className="ubicacion-container">
                     <button
                         type="button"
-                        onClick={handleUbicacion}
+                        onClick={handleUbicacionGPS}
                         className="ubicacion-button"
                     >
-                        Obtener mi ubicación
+                        Obtener mi ubicación (GPS)
                     </button>
+                    
+                    {/* --> NUEVO BOTÓN: Abre el modal del mapa */}
+                    <button
+                        type="button"
+                        onClick={() => setIsMapModalOpen(true)}
+                        className="ubicacion-button map-select-button"
+                    >
+                        Seleccionar Ubicación en Mapa 🗺️
+                    </button>
+                    {/* -------------------------------------- */}
+                    
                     {ubicacion.latitud && ubicacion.longitud && (
                         <p className="ubicacion-info">
-                            Ubicación obtenida: {ubicacion.latitud.toFixed(4)},{" "}
-                            {ubicacion.longitud.toFixed(4)}
+                            Ubicación obtenida: {ubicacion.latitud.toFixed(6)},{" "}
+                            {ubicacion.longitud.toFixed(6)}
                         </p>
                     )}
                 </div>
+                
                 <button type="submit" className="submit-button" disabled={loading}>
                     {loading ? "Enviando..." : "Enviar Reporte"}
                 </button>

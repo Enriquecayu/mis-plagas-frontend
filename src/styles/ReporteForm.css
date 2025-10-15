@@ -222,3 +222,62 @@
     box-shadow: 0 3px 6px rgba(52, 152, 219, 0.4); 
     font-weight: 600;
 }
+/* ------------------------------------------------------------------- */
+/* ESTILOS ESPECÍFICOS PARA EL MODAL DE SELECCIÓN DE UBICACIÓN EN MAPA */
+/* ------------------------------------------------------------------- */
+
+/* 1. La capa de superposición (overlay) que oscurece el fondo */
+.map-modal-overlay {
+    /* Clave: Fija la posición en toda la pantalla */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Oscurece el fondo para enfocar en el modal */
+    background-color: rgba(0, 0, 0, 0.75); 
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;    /* Centra verticalmente */
+    z-index: 1000; /* Asegura que esté por encima de todos los demás elementos */
+}
+
+/* 2. El contenedor del contenido (el "cuerpo" de la ventana emergente) */
+.map-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px; /* Ancho máximo para que sea cómodo en desktop */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* Asegura que el contenido del modal no se salga en móviles */
+    max-height: 90vh;
+    overflow-y: auto; 
+}
+
+/* Estilos para las acciones (botones de Confirmar/Cancelar) */
+.map-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Estilos para los botones (ajustar según tu estilo general) */
+.btn-confirm {
+    background-color: #3085d6; 
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background-color: #ccc;
+    color: #333;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
