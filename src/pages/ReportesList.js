@@ -4,6 +4,7 @@ import axiosClient from '../config/axiosClient';
 import { useNavigate } from 'react-router-dom';
 import Alerta from '../components/Alerta';
 import '../styles/ReportesList.css';
+import Swal from 'sweetalert2';
 import ReporteModal from '../components/ReporteModal';
 
 const ReportesList = () => {
@@ -11,7 +12,7 @@ const ReportesList = () => {
   const [reportes, setReportes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [alerta, setAlerta] = useState({ mensaje: '', tipo: '' });
+  const [alerta,] = useState({ mensaje: '', tipo: '' });
   const [selectedReporte, setSelectedReporte] = useState(null);
   const navigate = useNavigate();
 
@@ -58,23 +59,88 @@ const ReportesList = () => {
     fetchReportes();
   }, [fetchReportes]);
 
-  const handleDelete = async (id) => {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este reporte?')) {
-      try {
-        // CAMBIO 3: Usamos axiosClient con ruta relativa y sin headers
-        await axiosClient.delete(`/reportes/${id}`);
+  // ... asumiendo que ya importaste Swal de 'sweetalert2'
 
-        setAlerta({ mensaje: 'Reporte eliminado con éxito.', tipo: 'exito' });
-        fetchReportes();
-      } catch (err) {
-        setAlerta({ mensaje: 'Error al eliminar el reporte.', tipo: 'error' });
-        console.error(err);
-      }
+const handleDelete = async (id) => {
+    // 1. Mostrar un modal de confirmación más llamativo con SweetAlert2
+    const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¡No podrás revertir esto!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33', // Rojo para confirmar
+        cancelButtonColor: '#3085d6', // Azul para cancelar
+        confirmButtonText: 'Sí, eliminarlo',
+        cancelButtonText: 'Cancelar'
+    });
+
+    // 2. Comprobar si el usuario confirmó
+    if (result.isConfirmed) {
+        try {
+            await axiosClient.delete(`/reportes/${id}`);
+
+            // 3. Mostrar alerta de éxito que se cierra automáticamente después de 5 segundos
+            Swal.fire({
+                icon: 'success',
+                title: 'Eliminado',
+                text: 'Reporte eliminado con éxito.',
+                timer: 5000, // Se cierra después de 5 segundos (5000 ms)
+                showConfirmButton: false // No mostrar el botón de confirmación
+            });
+
+            // Opcional: Si estabas usando `setAlerta` antes, puedes quitarlo
+            // setAlerta({ mensaje: 'Reporte eliminado con éxito.', tipo: 'exito' });
+
+            fetchReportes();
+        } catch (err) {
+            // 4. Mostrar alerta de error que se cierra automáticamente después de 5 segundos
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al eliminar el reporte.',
+                timer: 5000, // Se cierra después de 5 segundos
+                showConfirmButton: false
+            });
+
+            // Opcional: Si estabas usando `setAlerta` antes, puedes quitarlo
+            // setAlerta({ mensaje: 'Error al eliminar el reporte.', tipo: 'error' });
+
+            console.error(err);
+        }
     }
   };
 
   // FUNCIÓN DE ASIGNACIÓN/ESTADO UNIFICADA
-  const handleUpdateReporte = async (id, updates = {}) => {
+  // Asegúrate de tener importado: import Swal from 'sweetalert2';
+
+const handleUpdateReporte = async (id, updates = {}) => {
+    // 1. **VENTANA DE CONFIRMACIÓN CON SWEETALERT2**
+    const confirmationResult = await Swal.fire({
+        title: '¿Confirmar Actualización?',
+        text: 'Estás a punto de guardar los cambios en este reporte.',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6', // Azul para confirmar (un color positivo)
+        cancelButtonColor: '#d33',     // Rojo para cancelar
+        confirmButtonText: 'Sí, actualizar',
+        cancelButtonText: 'No, cancelar'
+    });
+
+    // 2. **Si el usuario NO confirma, terminamos la función.**
+    if (!confirmationResult.isConfirmed) {
+        // Opcional: Mostrar una alerta de que se canceló.
+        Swal.fire({
+            title: 'Cancelado',
+            text: 'La actualización ha sido cancelada.',
+            icon: 'info',
+            timer: 3000,
+            showConfirmButton: false
+        });
+        return; 
+    }
+
+    // 3. **Si el usuario SÍ confirma, procedemos con la lógica de actualización.**
+    
     const payload = {
       ...updates,
       // Aseguramos que solo se envíe si existe en el estado de asignaciones
@@ -91,14 +157,30 @@ const ReportesList = () => {
         payload
       );
 
-      setAlerta({ mensaje: 'Reporte actualizado con éxito.', tipo: 'exito' });
+      // Alerta de éxito (se cierra automáticamente en 5 segundos)
+      Swal.fire({
+          icon: 'success',
+          title: '¡Actualizado! ✅',
+          text: 'Reporte actualizado con éxito.',
+          timer: 5000, 
+          showConfirmButton: false 
+      });
+
       fetchReportes();
 
     } catch (err) {
-      setAlerta({ mensaje: 'Error al actualizar el reporte.', tipo: 'error' });
+      // Alerta de error (se cierra automáticamente en 5 segundos)
+      Swal.fire({
+          icon: 'error',
+          title: 'Error ❌',
+          text: 'Error al actualizar el reporte.',
+          timer: 5000, 
+          showConfirmButton: false
+      });
+      
       console.error(err);
     }
-  };
+};
 
   const handleAsignacionInputChange = (id, value) => {
     setAsignaciones(prev => ({

@@ -5,17 +5,18 @@ import { useNavigate } from "react-router-dom";
 import "../styles/ReporteForm.css";
 import Alerta from "../components/Alerta";
 import Footer from "../components/Footer";
-
+import Swal from "sweetalert2";
 // Las 4 plagas fijas para los checkboxes. 
+
+//cambio aqui
 const PLAGAS_FIJAS = [
-    { id: 1, nombre: "Dengue" },
-    { id: 2, nombre: "Zica" },
-    { id: 3, nombre: "Leishmaniasis" },
-    { id: 4, nombre: "Chikungunya" },
+    { id: 1, nombre: "Micorbasurales" },
+    { id: 2, nombre: "Terreno Baldios" },
+    { id: 3, nombre: "Chatarra" },
+    { id: 4, nombre: "Recipientes con Agua" },
+    { id: 5, nombre: "Acumulacion de Agua"}
 ];
 
-// ELIMINADO: Ya no necesitamos definir la URL base aquí
-// const API_BASE_URL = "http://localhost:3000/api";
 
 const ReporteForm = () => {
     // ESTADOS
@@ -59,11 +60,38 @@ const ReporteForm = () => {
         }
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("rol");
-        navigate("/login");
-    };
+    const handleLogout = async () => {
+    // 1. Mostrar un modal de confirmación más llamativo
+    const result = await Swal.fire({
+        title: '¿Cerrar Sesión?',
+        text: 'Tendrás que ingresar tus credenciales nuevamente para acceder.',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#d33', // Rojo para la acción de "salir"
+        cancelButtonColor: '#3085d6', // Azul para "cancelar"
+        confirmButtonText: 'Sí, cerrar sesión',
+        cancelButtonText: 'Cancelar'
+    });
+
+    // 2. Verificar si el usuario confirmó
+    if (result.isConfirmed) {
+        // Ejecutar la acción de cerrar sesión
+        localStorage.removeItem('token');
+        localStorage.removeItem('rol');
+        
+        // 3. Mostrar alerta de éxito temporal (5 segundos)
+        Swal.fire({
+            icon: 'success',
+            title: 'Sesión Cerrada 👋',
+            text: 'Has cerrado tu sesión con éxito.',
+            timer: 5000, // Se cierra después de 5 segundos (5000 ms)
+            showConfirmButton: false 
+        });
+
+        // 4. Redirigir al usuario
+        navigate('/login');
+    }
+};
 
     const handleUbicacion = () => {
         if (navigator.geolocation) {
