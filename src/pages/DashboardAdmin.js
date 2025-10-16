@@ -7,6 +7,12 @@ import Swal from "sweetalert2";
 function DashboardAdmin() {
   const navigate = useNavigate();
 
+  // Función de manejo para la navegación a Estadísticas
+  const handleNavigateToStats = () => {
+    // Redirige a la ruta que acabamos de configurar en App.js
+    navigate("/estadisticas"); 
+  };
+
   const handleLogout = async () => {
     // 1. Mostrar un modal de confirmación más llamativo
     const result = await Swal.fire({
@@ -46,6 +52,12 @@ function DashboardAdmin() {
         <h1 className="dashboard-title">Panel de Administración</h1>
         <button onClick={() => navigate("/mapa")} className="perfil-button">
           Mapa
+        </button>
+        <button 
+          onClick={handleNavigateToStats} 
+          className="perfil-button" 
+        >
+          Estadísticas
         </button>
         <button onClick={handleLogout} className="logout-button">
           Cerrar sesión
